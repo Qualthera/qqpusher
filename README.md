@@ -15,26 +15,26 @@
 import qqpusher
 
 if __name__ == '__main__':
-    qqpush = qqpusher.qqpusher(token="xxxxxxxx", id="xxxxxxxx", auto_escape=False)
-    qqpush.set_group_memo("记得每天打卡喔")
+    qqpush1 = qqpusher.qqpusher(token="", id="", auto_escape=False)
+    qqpush1.send_private_msg("你好呀")
+    qqpush2 = qqpusher.qqpusher(token="", id="", auto_escape=False)
+    qqpush2.send_group_msg("大家好")
+    qqpush2.set_group_mute_all(True)
+    qqpush2.set_group_mute(1018921994, 60)
+    qqpush2.set_group_name("测试群名")
+    qqpush2.set_group_memo("测试群公告")
 
 ```
 
 **函数列表**
 
 - send_private_msg(self, message)
-  - send_private_msg("你好呀")
 - send_group_msg(self, message)
-  - send_group_msg("大家好")
 - set_group_mute_all(self, isMute)
-  - set_group_mute_all(True)
 - set_group_mute(self, member_id, mute_time)
-  - set_group_mute(1018921994, 60)
 - set_group_name(self, group_name)
-  - set_group_name("测试群名")
 - set_group_memo(self, memo)
-  - set_group_memo("测试群公告")
-    
+
 ### 鸣谢
 
 [yanxianjun](https://github.com/yanxianjun)开发维护的[QQPusher推送服务](http://qqpusher.yanxianjun.com/)
