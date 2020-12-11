@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
-__author__ = "HowieHye"
+__author__ = "Qualthera"
 
 from setuptools import (setup, find_packages)
 
 setup(
     name="qqpusher",
-    version="0.1.4",
+    version="0.1.5",
     description="SDK for qqpusher",
     author='Qualthera',
     author_email='qualthera@163.com',
