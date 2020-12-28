@@ -2,6 +2,10 @@
 # -*- coding:utf-8 -*-
 import requests
 
+urlCom = "http://api.qqpusher.yanxianjun.com/"
+urlPro = 'http://api.qqpusherpro.yanxianjun.com/'
+
+
 class qqpusher(object):
     def __init__(self, token, id, auto_escape):
         """
@@ -19,7 +23,7 @@ class qqpusher(object):
         :param message: 消息内容
         :return: 状态码
         """
-        url = "http://api.qqpusher.yanxianjun.com/send_private_msg"
+        url = urlCom + "send_private_msg"
         data = {
             "token": self.token,
             "user_id": self.id,
@@ -35,7 +39,7 @@ class qqpusher(object):
         :param message: 消息内容
         :return: 状态码
         """
-        url = "http://api.qqpusher.yanxianjun.com/send_group_msg"
+        url = urlCom + "send_group_msg"
         data = {
             "token": self.token,
             "group_id": self.id,
@@ -51,7 +55,7 @@ class qqpusher(object):
         :param isMute: True(设置禁言) or False(取消禁言)
         :return: 状态码
         """
-        url = "http://api.qqpusher.yanxianjun.com/set_group_mute_all"
+        url = urlCom + "set_group_mute_all"
         data = {
             "token": self.token,
             "group_id": self.id,
@@ -67,7 +71,7 @@ class qqpusher(object):
         :param mute_time: 禁言时间，整形，单位：秒
         :return: 状态码
         """
-        url = "http://api.qqpusher.yanxianjun.com/set_group_mute"
+        url = urlCom + "set_group_mute"
         data = {
             "token": self.token,
             "group_id": self.id,
@@ -83,7 +87,7 @@ class qqpusher(object):
         :param group_name: 群名
         :return: 状态码
         """
-        url = "http://api.qqpusher.yanxianjun.com/set_group_name"
+        url = urlCom + "set_group_name"
         data = {
             "token": self.token,
             "group_id": self.id,
@@ -98,11 +102,232 @@ class qqpusher(object):
         :param memo: 群公告
         :return: 状态码
         """
-        url = "http://api.qqpusher.yanxianjun.com/set_group_memo"
+        url = urlCom + "set_group_memo"
         data = {
             "token": self.token,
             "group_id": self.id,
             "memo": memo
         }
         res = requests.post(url=url, data=data)
-        return
+        return res
+
+
+class qqpusherpro(object):
+    def __init__(self, token, bot):
+        self.token = token
+        self.bot = bot
+
+    def register(self, username, pwd, user_tag):
+        url = urlPro + 'reg'
+        data = {
+            "user_name": username,
+            "user_password": pwd,
+            "user_tag": user_tag,
+            "token": self.token
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def add_qq(self, password, enable):
+        url = urlPro + 'add_qq'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "password": password,
+            "enable": enable
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def login(self):
+        url = urlPro + 'login'
+        data = {
+            "token": self.token,
+            "bot": self.bot
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def logout(self):
+        url = urlPro + 'logout'
+        data = {
+            "token": self.token,
+            "bot": self.bot
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def get_state_info(self):
+        url = urlPro + 'get_state_info'
+        data = {
+            "token": self.token,
+            "bot": self.bot
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def send_friend_msg(self, qq, msg):
+        url = urlPro + 'send_friend_msg'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "qq": qq,
+            "msg": msg
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def send_friend_json(self, qq, json):
+        url = urlPro + 'send_friend_json'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "qq": qq,
+            "json": json
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def send_friend_xml(self, qq, xml):
+        url = urlPro + 'send_friend_xml'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "qq": qq,
+            "xml": xml
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def send_group_msg(self, group, msg):
+        url = urlPro + 'send_group_msg'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group,
+            "msg": msg
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def send_group_json(self, group, json):
+        url = urlPro + 'send_friend_json'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group,
+            "json": json
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def send_group_xml(self, group, xml):
+        url = urlPro + 'send_friend_xml'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group,
+            "xml": xml
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def add_friend(self, qq, msg):
+        url = urlPro + 'add_friend'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "qq": qq,
+            "msg": msg
+        }
+        res = requests.post(url=url, data=data)
+        return data
+
+    def delete_friend(self, qq):
+        url = urlPro + 'delete_friend'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "qq": qq
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def handle_friend_event(self, qq, method, msg):
+        url = urlPro + 'handle_friend_event'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "qq": qq,
+            "method": method,
+            "msg": msg
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def join_group(self, group, msg):
+        url = urlPro + 'join_group'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group,
+            "msg": msg
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def quit_group(self, group):
+        url = urlPro + 'quit_group'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def all_ban(self, group, enable):
+        url = urlPro + 'all_ban'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group,
+            "enable": enable
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def ban(self, group, qq, block):
+        url = urlPro + 'ban'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group,
+            "qq": qq,
+            "block": block
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def kick_group_member(self, group, qq):
+        url = urlPro + 'kick_group_member'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "group": group,
+            "qq": qq,
+            "block": True
+        }
+        res = requests.post(url=url, data=data)
+        return res
+
+    def add_event(self, bot_event_host, bot_event_url):
+        url = urlPro + 'add_event'
+        data = {
+            "token": self.token,
+            "bot": self.bot,
+            "bot_event_host": bot_event_host,
+            "bot_event_url": bot_event_url
+        }
+        res = requests.post(url=url, data=data)
+        return res
