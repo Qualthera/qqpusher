@@ -6,7 +6,7 @@ from setuptools import (setup, find_packages)
 
 setup(
     name="qqpusher",
-    version="0.1.6",
+    version="0.1.7",
     description="SDK for qqpusher",
     author='Qualthera',
     author_email='qualthera@163.com',
