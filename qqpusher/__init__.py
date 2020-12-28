@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 import requests
+import json
 
 urlCom = "http://api.qqpusher.yanxianjun.com/"
 urlPro = 'http://api.qqpusherpro.yanxianjun.com/'
@@ -30,7 +31,7 @@ class qqpusher(object):
             "message": message,
             "auto_escape": self.auto_escape
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def send_group_msg(self, message):
@@ -46,7 +47,7 @@ class qqpusher(object):
             "message": message,
             "auto_escape": self.auto_escape
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def set_group_mute_all(self, isMute):
@@ -61,7 +62,7 @@ class qqpusher(object):
             "group_id": self.id,
             "mute": isMute
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def set_group_mute(self, member_id, mute_time):
@@ -78,7 +79,7 @@ class qqpusher(object):
             "group_member": member_id,
             "mute_time": mute_time
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def set_group_name(self, group_name):
@@ -93,7 +94,7 @@ class qqpusher(object):
             "group_id": self.id,
             "group_name": group_name
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def set_group_memo(self, memo):
@@ -108,7 +109,7 @@ class qqpusher(object):
             "group_id": self.id,
             "memo": memo
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
 
@@ -125,18 +126,18 @@ class qqpusherpro(object):
             "user_tag": user_tag,
             "token": self.token
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
-    def add_qq(self, password, enable):
+    def add_qq(self, password):
         url = urlPro + 'add_qq'
         data = {
             "token": self.token,
             "bot": self.bot,
             "password": password,
-            "enable": enable
+            "enable": True
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def login(self):
@@ -145,7 +146,7 @@ class qqpusherpro(object):
             "token": self.token,
             "bot": self.bot
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def logout(self):
@@ -154,7 +155,7 @@ class qqpusherpro(object):
             "token": self.token,
             "bot": self.bot
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def get_state_info(self):
@@ -163,7 +164,7 @@ class qqpusherpro(object):
             "token": self.token,
             "bot": self.bot
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def send_friend_msg(self, qq, msg):
@@ -174,7 +175,7 @@ class qqpusherpro(object):
             "qq": qq,
             "msg": msg
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def send_friend_json(self, qq, json):
@@ -185,7 +186,7 @@ class qqpusherpro(object):
             "qq": qq,
             "json": json
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def send_friend_xml(self, qq, xml):
@@ -196,7 +197,7 @@ class qqpusherpro(object):
             "qq": qq,
             "xml": xml
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def send_group_msg(self, group, msg):
@@ -207,7 +208,7 @@ class qqpusherpro(object):
             "group": group,
             "msg": msg
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def send_group_json(self, group, json):
@@ -218,7 +219,7 @@ class qqpusherpro(object):
             "group": group,
             "json": json
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def send_group_xml(self, group, xml):
@@ -229,7 +230,7 @@ class qqpusherpro(object):
             "group": group,
             "xml": xml
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def add_friend(self, qq, msg):
@@ -240,7 +241,7 @@ class qqpusherpro(object):
             "qq": qq,
             "msg": msg
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return data
 
     def delete_friend(self, qq):
@@ -250,7 +251,7 @@ class qqpusherpro(object):
             "bot": self.bot,
             "qq": qq
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def handle_friend_event(self, qq, method, msg):
@@ -262,7 +263,7 @@ class qqpusherpro(object):
             "method": method,
             "msg": msg
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def join_group(self, group, msg):
@@ -273,7 +274,7 @@ class qqpusherpro(object):
             "group": group,
             "msg": msg
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def quit_group(self, group):
@@ -283,7 +284,7 @@ class qqpusherpro(object):
             "bot": self.bot,
             "group": group
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def all_ban(self, group, enable):
@@ -294,7 +295,7 @@ class qqpusherpro(object):
             "group": group,
             "enable": enable
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def ban(self, group, qq, block):
@@ -306,7 +307,7 @@ class qqpusherpro(object):
             "qq": qq,
             "block": block
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def kick_group_member(self, group, qq):
@@ -318,7 +319,7 @@ class qqpusherpro(object):
             "qq": qq,
             "block": True
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
 
     def add_event(self, bot_event_host, bot_event_url):
@@ -329,5 +330,5 @@ class qqpusherpro(object):
             "bot_event_host": bot_event_host,
             "bot_event_url": bot_event_url
         }
-        res = requests.post(url=url, data=data)
+        res = requests.post(url=url, data=json.dumps(data))
         return res
