@@ -1,7 +1,8 @@
 ## QQPUSHER
 
-> 本项目是[QQPusher](http://qqpusher.yanxianjun.com/)的`Python SDK`
+> 本项目是[QQPusher](http://qqpusher.yanxianjun.com/)和[QQPusherPro](http://qqpusherpro.yanxianjun.com/)的`Python SDK`
 > [QQPusher](http://qqpusher.yanxianjun.com/)的使用方法请参考http://qqpusher.yanxianjun.com/
+> [QQPusherPro](http://qqpusherpro.yanxianjun.com/)的使用方法请参考http://qqpusherpro.yanxianjun.com/
 
 ### 本项目的使用
 
@@ -38,12 +39,30 @@ if __name__ == '__main__':
 
 **函数列表**
 
-- send_private_msg(self, message)
-- send_group_msg(self, message)
-- set_group_mute_all(self, isMute)
-- set_group_mute(self, member_id, mute_time)
-- set_group_name(self, group_name)
-- set_group_memo(self, memo)
+- qqpusher
+    - send_private_msg
+    - send_group_msg
+    - set_group_mute_all
+    - set_group_mute
+    - set_group_name
+    - set_group_memo
+- qqpusherpro
+    - get_state_info
+    - send_friend_msg
+    - send_friend_json
+    - send_friend_xml
+    - send_group_msg
+    - send_group_json
+    - send_group_xml
+    - add_friend
+    - delete_friend
+    - handle_friend_event
+    - join_group
+    - quit_group
+    - all_ban
+    - ban
+    - kick_group_member
+    - add_event
 
 ### 鸣谢
 
