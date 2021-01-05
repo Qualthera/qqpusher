@@ -5,6 +5,7 @@ import json
 
 urlCom = "http://api.qqpusher.yanxianjun.com/"
 urlPro = 'http://api.qqpusherpro.yanxianjun.com/'
+urlWechat = 'http://api.wechatpusher.yanxianjun.com/'
 
 
 class qqpusher(object):
@@ -329,6 +330,20 @@ class qqpusherpro(object):
             "bot": self.bot,
             "bot_event_host": bot_event_host,
             "bot_event_url": bot_event_url
+        }
+        res = requests.post(url=url, data=json.dumps(data))
+        return res
+
+
+class wechatpusher(object):
+    def __init__(self, wxid):
+        self.wxid = wxid
+
+    def send_msg(self, msg):
+        url = urlWechat + 'sendMsg'
+        data = {
+            'wxid': self.wxid,
+            'msg': msg
         }
         res = requests.post(url=url, data=json.dumps(data))
         return res
